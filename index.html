@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PropDekho · Modern Navbar with Features</title>
+  <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Font Awesome 6 (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Font: Inter (modern) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+    rel="stylesheet">
+
+  <style>
+:root {
+    --navy: #1d2636;
+    --orange: #ff9800;
+}
+
+.text-navy { color: var(--navy); }
+.text-orange { color: var(--orange); }
+
+#authOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0; /* Shuru mein invisible */
+    transition: opacity 0.3s ease;
+}
+#authOverlay.active {
+    opacity: 1; 
+}
+.auth-modal {
+    position: fixed;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1050; 
+    pointer-events: auto;   
+    width: 90%;
+    max-width: 420px;
+}
+.auth-modal.active {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+@media (max-width: 576px) {
+    .auth-modal {
+        top: calc(var(--navbar-height, 60px) + 25px); 
+        width: 95%;
+    }
+}
+.auth-card {
+    background: #fff;
+    border-radius: 20px;
+    border-top: 6px solid var(--orange);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+    padding: 25px;
+}
+.form-control {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1.5px solid #ebebeb;
+    background-color: #fbfbfb;
+    transition: all 0.2s ease;
+}
+.form-control:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 4px rgba(255,152,0,0.1);
+    outline: none;
+}
+.btn-orange {
+    background-color: var(--orange);
+    color: white;
+    padding: 12px;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    width: 100%;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+.btn-orange:hover {
+    background-color: #e68a00;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255,152,0,0.25);
+}
+.close-btn {
+    position: absolute;
+    top: -3px;
+    right: -2px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;         
+    justify-content: center;    
+    font-size: 20px;
+    font-weight: bold;           
+    line-height: 1;              
+    color: #121111;
+    cursor: pointer;
+    z-index: 1001;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+.fade-in {
+    animation: fadeIn 0.4s ease-in;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.login-link, #switchToSignup, #switchToLogin {
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--navy);
+}
+.login-link:hover, #switchToSignup:hover, #switchToLogin:hover {
+   color: var(--orange); 
+  }
+#signupForm { 
+  max-height: 80vh;
+ overflow-y: auto; 
+}
+  </style>
+
+
+</head>
+
+<body>
+
+  <!----------------------------------- Modern Sticky Navbar ------------------------------>
+  <!--------------------------------------------------------------------------------------->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-modern" id="mainNavbar">
+    <div class="container-fluid ">
+      <!-- Logo -->
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-building"></i> PropDekho
+      </a>
+      <!-------------------------------------- dropdown mobile  ------------------------------->
+      <!--------------------------------------------------------------------------------------->
+      <div class="dropdown mobile ms-auto me-1">
+        <button class="btn dropdown-toggle no-arrow p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="user-avatar">
+            <i class="far fa-user"></i>
+          </div>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end mt-2 p-2" style="min-width: 200px;">
+          <li><a class="dropdown-item" href="#" id="openSignup"><i class="bi bi-person"></i>Signup</a></li>
+          <li><a class="dropdown-item" href="#" id="openLogin"><i class="bi bi-box-arrow-in-right"></i>Login</a></li>
+
+        </ul>
+      </div>
+      <!-------------------------------------- Animated hamburger ----------------------------->
+      <!--------------------------------------------------------------------------------------->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <!------------------------- Main navigation with mega dropdown ------------------------->
+      <!-------------------------------------------------------------------------------------->
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><span>Home</span></a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#"> <span>Properties</span> </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><span>About</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><span>Contact</span></a>
+          </li>
+        </ul>
+        <!---------------------------------- Search bar (desktop)------------------------------->
+        <!-------------------------------------------------------------------------------------->
+        <div class="right-actions">
+          <div class="search-wrapper d-none d-lg-flex">
+            <i class="fas fa-search search-icon-absolute"></i>
+            <input type="text" class="search-input" placeholder="Search properties...">
+          </div>
+          <!----------------------- User avatar dropdown (laptop desktop)------------------------->
+          <!-------------------------------------------------------------------------------------->
+          <div class="dropdown desktop">
+            <button class="btn dropdown-toggle no-arrow p-0" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <div class="user-avatar">
+                <i class="far fa-user"></i>
+              </div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mt-2 p-2" style="min-width: 200px;">
+              <li><a class="dropdown-item" href="#" id="openSignup2"><i class="bi bi-person me-1"></i>Signup</a></li>
+              <li><a class="dropdown-item" href="#" id="openLogin2"><i class="bi bi-box-arrow-in-right me-1"></i>Login</a></li>
+            </ul>
+          </div>
+          <!----------------- Prominent post property button --------------->
+          <button class="btn-post ms-2">Post Property</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-----------------------HERO SECTION ------------------------->
+  <!--------------------------------------------------------------->
+  <section class="hero d-flex align-items-center text-center text-white">
+    <div class="container position-relative z-2">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+          <h1 class="fw-bold mb-3 display-5">
+            Find Your <span class="text-warning">Dream Property</span>
+          </h1>
+
+          <p class="mb-4 fs-5 opacity-75">
+            Connect directly with property owners & trusted brokers. No middlemen, no hidden fees.
+          </p>
+
+          <div class="card bg-white bg-opacity-25 text-dark shadow-lg rounded-4 p-3 p-lg-4 mx-auto"
+            style="max-width: 900px; backdrop-filter: blur(12px);">
+
+            <div class="row g-3 align-items-end">
+
+              <!-- CITY -->
+              <div class="col-12 col-sm-6 col-md-3">
+                <label class="form-label text-white">
+                  <i class="bi bi-geo-alt text-warning me-1"></i> City
+                </label>
+                <select class="form-select">
+                  <option>Select city</option>
+                  <option>Hyd</option>
+                  <option>Mpk</option>
+                  <option>Kpk</option>
+                </select>
+              </div>
+
+              <!-- PROPERTY TYPE -->
+              <div class="col-12 col-sm-6 col-md-3">
+                <label class="form-label text-white">
+                  <i class="bi bi-house-door text-warning me-1"></i> Property Type
+                </label>
+                <select class="form-select">
+                  <option>All types</option>
+                  <option>Apartment</option>
+                  <option>Villa</option>
+                  <option>Office</option>
+                </select>
+              </div>
+
+              <!-- BUDGET -->
+              <div class="col-12 col-sm-6 col-md-3">
+                <label class="form-label text-white">
+                  <i class="bi bi-cash text-warning me-1"></i> Budget
+                </label>
+                <select class="form-select">
+                  <option>Select Budget</option>
+                  <option>10k - 50k</option>
+                  <option>50k - 1L</option>
+                  <option>1L+</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-start">
+                <button class="btn btn-warning fw-semibold h-100" style="width: 140px;">
+                  <i class="bi bi-search"></i> Search
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!----------------------- Properties SECTION ------------------------->
+  <!--------------------------------------------------------------->
+
+  <section class="card-section py-5">
+    <div class="container-fluid ">
+
+      <div class="section-heading text-center">
+        <h1 class="main-heading ">
+          Featured <span>Properties</span>
+        </h1>
+      </div>
+
+      <div class="row g-4" id="propertyRow"></div>
+    </div>
+  </section>
+
+  <!----------------------- About section ------------------------->
+  <!--------------------------------------------------------------->
+  <section class="why-choose-section">
+
+    <div class="section-container">
+
+      <div class="split-layout">
+
+        <!-- Left Image -->
+
+        <div class="image-side">
+
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa" alt="Modern Home">
+
+          <div class="image-badge">
+
+            <i data-feather="home"></i>
+
+            <div class="badge-text">
+              500+ Properties
+              <span>Available nationwide</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Right Content -->
+
+        <div class="content-side">
+
+          <div class="content-header">
+
+            <h2>
+              Why <span class="highlight">Choose Us</span>
+            </h2>
+
+            <p>We're committed to providing exceptional service and finding you the perfect property</p>
+
+          </div>
+
+
+          <div class="cards-grid">
+
+            <div class="feature-card">
+              <div class="icon-wrapper">
+                <i data-feather="check-circle"></i>
+              </div>
+              <h3 class="feature-title">Verified Listings</h3>
+              <p class="feature-desc">Every property is thoroughly vetted by our experts.</p>
+            </div>
+
+
+            <div class="feature-card">
+              <div class="icon-wrapper">
+                <i data-feather="trending-down"></i>
+              </div>
+              <h3 class="feature-title">Best Market Prices</h3>
+              <p class="feature-desc">Advanced analytics ensure competitive pricing.</p>
+            </div>
+
+
+            <div class="feature-card">
+              <div class="icon-wrapper">
+                <i data-feather="zap"></i>
+              </div>
+              <h3 class="feature-title">Fast Property Search</h3>
+              <p class="feature-desc">Smart filters to find your dream home instantly.</p>
+            </div>
+
+
+            <div class="feature-card">
+              <div class="icon-wrapper">
+                <i data-feather="shield"></i>
+              </div>
+              <h3 class="feature-title">Trusted Agents</h3>
+              <p class="feature-desc">Licensed experts with proven track records.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+   <!----------------------- Why Choose Us section ------------------------->
+  <!------------------------------------------------------------------------>
+  <section class="cta">
+    <div class="container cta-box">
+      <h2>Ready to List Your Property?</h2>
+      <p>
+        Join thousands of property owners and brokers who are already
+        benefiting from our transparent platform. List your property today
+        and find the right buyer or tenant.
+      </p>
+
+      <div class="cta-buttons">
+        <a href="#" class="btn-primary">Post Property Free</a>
+      </div>
+    </div>
+  </section>
+
+  <!----------------------- footer section ------------------------->
+  <!--------------------------------------------------------------->
+  <footer class="text-white pt-5 pb-3 border-top border-secondary" style="background-color: #222A39;">
+    <div class="container">
+      <div class="row gy-4">
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div style="color: #F97316; font-size: 2rem; line-height: 1;">
+              <i class="fas fa-building"></i>
+            </div>
+            <h4 class="fw-bold mb-0" style="color: #F97316; letter-spacing: -0.5px;">
+              PropDekho
+            </h4>
+          </div>
+
+          <p class="text-white-50 small mb-3">
+            India's trusted platform for direct property deals between owners, brokers, and buyers. No middlemen, no
+            hidden fees.
+          </p>
+
+          <div class="d-flex gap-2">
+            <a href="#" class="btn btn-outline-light rounded-circle social-icon-btn"
+              style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="#" class="btn btn-outline-light rounded-circle social-icon-btn"
+              style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+              <i class="fab fa-twitter"></i>
+            </a>
+
+            <a href="#" class="btn btn-outline-light rounded-circle social-icon-btn"
+              style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+              <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="#" class="btn btn-outline-light rounded-circle social-icon-btn"
+              style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-6 col-lg-3">
+          <h6 class="fw-bold mb-3 border-bottom pb-2 d-inline-block" style="border-color: #F97316 !important;">
+            QUICK LINKS
+          </h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none small">All Properties</a></li>
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none small">About Us</a></li>
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none small">Contact</a></li>
+            <li><a href="#" class="text-white-50 text-decoration-none small">Terms & Privacy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-6 col-lg-3">
+          <h6 class="fw-bold mb-3 border-bottom pb-2 d-inline-block" style="border-color: #F97316 !important;">
+            FOR USERS
+          </h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none small">Post Property Free</a></li>
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none small">Login / Register</a></li>
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none small">Search Properties</a></li>
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none small">Apartments</a></li>
+            <li><a href="#" class="text-white-50 text-decoration-none small">Villas</a></li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6 class="fw-bold mb-3 border-bottom pb-2 d-inline-block" style="border-color: #F97316 !important;">
+            CONTACT US
+          </h6>
+          <div class="d-flex align-items-start gap-2 mb-3">
+            <i class="fas fa-envelope mt-1" style="color: #F97316;"></i>
+            <a href="mailto:support@propdekho.com"
+              class="text-white-50 text-decoration-none small">support@propdekho.com</a>
+          </div>
+          <div class="d-flex align-items-start gap-2 mb-3">
+            <i class="fas fa-phone mt-1" style="color: #F97316;"></i>
+            <a href="tel:+9118004008888" class="text-white-50 text-decoration-none small">+91 1800 400 8888</a>
+          </div>
+          <div class="d-flex align-items-start gap-2">
+            <i class="fas fa-map-marker-alt mt-1" style="color: #F97316;"></i>
+            <span class="text-white-50 small">
+              Tower B, WeWork, Cyber City, Gurugram, HR - 122002, India
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="border-top border-secondary mt-4 pt-3 text-center">
+        <p class="text-white-50 small mb-0">© 2026 PropDekho. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+ <!----------------------- Modal ------------------------->
+  <!--------------------------------------------------------------->
+
+  <!-- Overlay -->
+<div id="authOverlay" class="d-none"></div>
+
+<!-- Auth Modal -->
+<div id="authModal" class="auth-modal d-none">
+
+    <!-- Close Button -->
+    <span class="close-btn" id="closeModal">&times;</span>
+
+    <!-- LOGIN -->
+    <div id="loginForm" class="auth-card fade-in">
+        <div class="card-body">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold text-navy mb-0">Login <span class="text-orange">Account</span></h3>
+                <p class="text-muted small">Welcome back! Please enter your details.</p>
+            </div>
+
+            <form action="dashboard.php" method="POST">
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold text-secondary">Email Address</label>
+                    <input type="email" class="form-control form-control-lg fs-6 rounded-3" placeholder="Enter your email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold text-secondary">Password</label>
+                    <input type="password" class="form-control form-control-lg fs-6 rounded-3" placeholder="••••••••" required>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="rem">
+                        <label class="form-check-label small text-muted" for="rem">Remember me</label>
+                    </div>
+                    <a href="#" class="small text-decoration-none fw-semibold text-orange">Forgot?</a>
+                </div>
+
+                <button type="submit" class="btn btn-orange w-100 py-3 fw-bold rounded-3 border-0 shadow-sm">Sign In</button>
+                
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="text-muted small mb-0">New here? 
+                    <a href="#" id="switchToSignup" class="text-navy fw-bold text-decoration-none">Create Account</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIGNUP -->
+    <div id="signupForm" class="auth-card fade-in d-none">
+        <div class="card-body">
+            <div class="text-center mb-4">
+                <h4>Create <span class="text-orange">Account</span></h4>
+                <p class="text-muted small">Fill the form to get started</p>
+            </div>
+
+            <form action="register_process.php" method="POST">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" placeholder="Enter full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" placeholder="example@mail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" placeholder="Create password" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" placeholder="Repeat password" required>
+                </div>
+
+                <button type="submit" class="btn-orange">Register Now</button>
+            </form>
+
+            <div class="text-center mt-3">
+                <p class="text-muted small mb-0">Already a member? 
+                    <a href="#" id="switchToLogin" class="login-link ms-1">Login Instead</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Optional: scroll effect to add class -->
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.2/feather.min.js"></script>
+
+  <script>
+    feather.replace();
+  </script>
+</body>
+
+</html>
