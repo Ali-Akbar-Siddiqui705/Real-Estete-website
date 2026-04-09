@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>PropDekho | Contact Us - Premium Real Estate</title>
+  <link rel="stylesheet" href="nav.css">
+ 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefcf8;
+      color: #1e2a3e;
+      line-height: 1.5;
+    }
+
+ 
+    :root {
+      --primary-deep: #0f2b3d;      
+      --accent-gold:#F97316;      
+      --accent-orange: #e68a2e;  
+      --accent-hover: #c9771f;
+      --light-cream: #ffffff;
+      --soft-mist: #f9f7f3;
+      --card-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
+      --hover-lift: 0 20px 28px -12px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.05);
+      --border-glow: rgba(212, 175, 55, 0.25);
+    }
+
+    a, button, .card, input, textarea, .btn, .info-card {
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .hero-contact {
+      position: relative;
+      background: url('https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+      min-height: 58vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 3px solid var(--accent-gold);
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(15, 43, 61, 0.88) 0%, rgba(15, 43, 61, 0.75) 100%);
+      backdrop-filter: brightness(0.98);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: white;
+      padding: 2rem;
+    }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .hero-content p {
+      font-size: 1.35rem;
+      font-weight: 400;
+      opacity: 0.95;
+      letter-spacing: 0.3px;
+    }
+    .breadcrumb-custom {
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.18);
+      display: inline-block;
+      padding: 0.4rem 1.3rem;
+      border-radius: 40px;
+      backdrop-filter: blur(8px);
+      margin-top: 1.2rem;
+      font-weight: 500;
+    }
+    .breadcrumb-custom span {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+
+    .info-card-wrapper {
+      margin-top: -2.5rem;
+      position: relative;
+      z-index: 5;
+    }
+    .info-card {
+      background: var(--light-cream);
+      border: none;
+      border-radius: 1.4rem;
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.3s;
+      box-shadow: var(--card-shadow);
+      height: 100%;
+      border: 1px solid rgba(212, 175, 55, 0.12);
+    }
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--hover-lift);
+      border-color: rgba(212, 175, 55, 0.35);
+    }
+    .icon-ring {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(230, 138, 46, 0.08) 100%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+      transition: all 0.2s;
+    }
+    .info-card:hover .icon-ring {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(230, 138, 46, 0.2) 100%);
+      transform: scale(1.02);
+    }
+    .icon-ring i {
+      font-size: 1.8rem;
+      color: var(--accent-orange);
+      transition: 0.2s;
+    }
+    .info-card:hover .icon-ring i {
+      color: var(--accent-gold);
+      transform: scale(1.05);
+    }
+    .info-card h5 {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-deep);
+      letter-spacing: -0.2px;
+    }
+    .info-card p, .info-card a {
+      color: #4a627a;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+    }
+    .info-card a:hover {
+      color: var(--accent-orange);
+    }
+    .info-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--accent-gold);
+      margin: 0.6rem auto 0.4rem;
+      opacity: 0.6;
+    }
+    .card-small-text {
+      font-size: 0.7rem;
+      color: #7a8e9e;
+    }
+
+    .form-section {
+      background: white;
+      border-radius: 2rem;
+      padding: 2.8rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f0ebe2;
+      transition: box-shadow 0.2s;
+    }
+    .form-section:hover {
+      box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.12);
+    }
+    .form-label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1f384b;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+    }
+    .form-control, .form-select {
+      border: 1.5px solid #e9e2d4;
+      border-radius: 1.2rem;
+      padding: 0.85rem 1.2rem;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      background-color: #ffffff;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+      outline: none;
+    }
+    .btn-accent {
+      background: linear-gradient(95deg, var(--accent-orange) 0%, #e67e22 100%);
+      border: none;
+      padding: 0.9rem 1.8rem;
+      font-weight: 700;
+      border-radius: 3rem;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.25s;
+      width: 100%;
+      letter-spacing: 0.5px;
+    }
+    .btn-accent:hover {
+      background: linear-gradient(95deg, #d4711f 0%, #c46214 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px -8px rgba(230, 138, 46, 0.5);
+      color: white;
+    }
+
+    .map-wrapper {
+      border-radius: 1.8rem;
+      overflow: hidden;
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: 0.3s;
+    }
+    .map-wrapper iframe {
+      width: 100%;
+      height: 420px;
+      display: block;
+    }
+
+    .cta-section {
+      background: linear-gradient(115deg, #222A39 0%, #222A39 100%);
+      border-radius: 2rem;
+      padding: 3rem 2.5rem;
+      color: white;
+      box-shadow: 0 12px 24px -12px rgba(0,0,0,0.25);
+    }
+    .cta-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: -0.3px;
+    }
+    .btn-gold-outline {
+      border: 2px solid var(--accent-gold);
+      background: transparent;
+      padding: 0.8rem 2rem;
+      border-radius: 3rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      transition: 0.2s;
+    }
+    .btn-gold-outline:hover {
+      background: var(--accent-gold);
+      color: #0f2b3d;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(212, 175, 55, 0.3);
+      border-color: var(--accent-gold);
+    }
+
+    /* Dark Premium Footer */
+.social-icon-btn {
+    transition: all 0.3s ease !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.social-icon-btn:hover {
+    background-color: #F97316 !important; 
+    border-color: #F97316 !important;    
+    color: white !important;            
+    transform: translateY(-3px);         
+    box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3); 
+}
+
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.7rem;
+      }
+      .hero-content p {
+        font-size: 1.05rem;
+      }
+      .form-section {
+        padding: 1.8rem;
+      }
+      .cta-section {
+        padding: 2rem 1.5rem;
+        text-align: center;
+      }
+      .info-card-wrapper {
+        margin-top: -1.8rem;
+      }
+      .info-card {
+        padding: 1rem 0.6rem;
+      }
+      .icon-ring {
+        width: 52px;
+        height: 52px;
+      }
+      .icon-ring i {
+        font-size: 1.5rem;
+      }
+      .info-card h5 {
+        font-size: 1rem;
+      }
+    }
+    .section-spacing {
+      margin-top: 5rem;
+      margin-bottom: 4rem;
+    }
+    .text-accent {
+      color: var(--accent-gold);
+    }
+  </style>
+</head>
+<body>
+
+     <!----------------------------------- Modern Sticky Navbar ------------------------------>
+  <!--------------------------------------------------------------------------------------->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-modern" id="mainNavbar">
+    <div class="container-fluid ">
+      <!-- Logo -->
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-building"></i> PropDekho
+      </a>
+      <!-------------------------------------- dropdown mobile  ------------------------------->
+      <!--------------------------------------------------------------------------------------->
+      <div class="dropdown mobile ms-auto me-1">
+        <button class="btn dropdown-toggle no-arrow p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="user-avatar">
+            <i class="far fa-user"></i>
+          </div>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end mt-2 p-2" style="min-width: 200px;">
+          <li><a class="dropdown-item" href="#" id="openSignup"><i class="bi bi-person"></i>Signup</a></li>
+          <li><a class="dropdown-item" href="#" id="openLogin"><i class="bi bi-box-arrow-in-right"></i>Login</a></li>
+
+        </ul>
+      </div>
+      <!-------------------------------------- Animated hamburger ----------------------------->
+      <!--------------------------------------------------------------------------------------->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <!------------------------- Main navigation with mega dropdown ------------------------->
+      <!-------------------------------------------------------------------------------------->
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#hero"><span>Home</span></a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#Properties"> <span>Properties</span> </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#About"><span>About</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Contact"><span>Contact</span></a>
+          </li>
+        </ul>
+        <!---------------------------------- Search bar (desktop)------------------------------->
+        <!-------------------------------------------------------------------------------------->
+        <div class="right-actions">
+          <div class="search-wrapper d-none d-lg-flex">
+            <i class="fas fa-search search-icon-absolute"></i>
+            <input type="text" class="search-input" placeholder="Search properties...">
+          </div>
+          <!----------------------- User avatar dropdown (laptop desktop)------------------------->
+          <!-------------------------------------------------------------------------------------->
+          <div class="dropdown desktop">
+            <button class="btn dropdown-toggle no-arrow p-0" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <div class="user-avatar">
+                <i class="far fa-user"></i>
+              </div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mt-2 p-2" style="min-width: 200px;">
+              <li><a class="dropdown-item" href="#" id="openSignup2"><i class="bi bi-person me-1"></i>Signup</a></li>
+              <li><a class="dropdown-item" href="#" id="openLogin2"><i class="bi bi-box-arrow-in-right me-1"></i>Login</a></li>
+            </ul>
+          </div>
+          <!----------------- Prominent post property button --------------->
+          <button class="btn-post ms-2">Post Property</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<!-- Hero Section: Premium Real Estate Visual -->
+<section class="hero-contact">
+  <div class="hero-overlay"></div>
+  <div class="hero-content container">
+    <h1>Contact Us</h1>
+    <p>We’d love to hear from you — your dream home awaits</p>
+    <div class="breadcrumb-custom">
+      <i class="fas fa-home me-1"></i> Home / <span>Contact</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3 COMPACT Premium Contact Info Cards (Address, Phone, Email) - Size Reduced -->
+<div class="container container-custom-pad info-card-wrapper">
+  <div class="row g-3 justify-content-center">
+    <!-- Address Card - Compact & Elegant -->
+    <div class="col-md-6 col-lg-3">
+      <div class="info-card">
+        <div class="icon-ring">
+          <i class="fas fa-building"></i>
+        </div>
+        <h5>Visit Showroom</h5>
+        <p>Luxury Galleria, BKC,<br> Mumbai - 400051</p>
+        <div class="info-divider"></div>
+        <small class="card-small-text"><i class="fas fa-map-pin me-1"></i> Premium Hub</small>
+      </div>
+    </div>
+    <!-- Phone Card - Direct Connect -->
+    <div class="col-md-6 col-lg-3">
+      <div class="info-card">
+        <div class="icon-ring">
+          <i class="fas fa-phone-alt"></i>
+        </div>
+        <h5>Call Concierge</h5>
+        <p><a href="tel:+919876543210">+91 98765 43210</a><br> <a href="tel:+918800123456">+91 88001 23456</a></p>
+        <div class="info-divider"></div>
+        <small class="card-small-text">10 AM – 7 PM</small>
+      </div>
+    </div>
+    <!-- Email Card - Premium Support -->
+    <div class="col-md-6 col-lg-3">
+      <div class="info-card">
+        <div class="icon-ring">
+          <i class="fas fa-envelope-open-text"></i>
+        </div>
+        <h5>Email Us</h5>
+        <p><a href="mailto:hello@propdekho.com">hello@propdekho.com</a><br> <a href="mailto:luxury@propdekho.com">luxury@propdekho.com</a></p>
+        <div class="info-divider"></div>
+        <small class="card-small-text">Response within 2h</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Form + Map Section (Modern Grid) -->
+<div class="container container-custom-pad section-spacing">
+  <div class="row g-5 align-items-stretch">
+    <!-- Stylish Contact Form -->
+    <div class="col-lg-6">
+      <div class="form-section h-100">
+        <h3 class="mb-1 fw-bold" style="color: var(--primary-deep);">Let's Connect</h3>
+        <p class="mb-4 text-secondary" style="border-left: 3px solid var(--accent-gold); padding-left: 12px;">Share your requirements, and our property experts will curate the finest options.</p>
+        <form action="#" method="post">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label"><i class="fas fa-user me-1"></i> Full Name *</label>
+              <input type="text" class="form-control" placeholder="Amir Khan" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="fas fa-envelope me-1"></i> Email *</label>
+              <input type="email" class="form-control" placeholder="hello@domain.com" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="fas fa-mobile-alt me-1"></i> Phone</label>
+              <input type="tel" class="form-control" placeholder="+91 98765 43210">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="fas fa-tag me-1"></i> Subject</label>
+              <input type="text" class="form-control" placeholder="Property inquiry / Site Visit">
+            </div>
+            <div class="col-12">
+              <label class="form-label"><i class="fas fa-comment-dots me-1"></i> Your Message *</label>
+              <textarea class="form-control" rows="5" placeholder="Tell us about your dream home, budget, or investment plans..."></textarea>
+            </div>
+            <div class="col-12 mt-3">
+              <button type="submit" class="btn btn-accent"><i class="fas fa-paper-plane me-2"></i>Send Enquiry</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Embedded Google Map (Luxury Location) -->
+    <div class="col-lg-6">
+      <div class="h-100 d-flex flex-column">
+        <div class="map-wrapper">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.3885321738213!2d72.830891975018!3d19.07022198211074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c91b1f2a7b7b%3A0x2a1e6e8f9b9c8b4d!2sBandra%20Kurla%20Complex%2C%20Mumbai!5e0!3m2!1sen!2sin!4v1691503772456!5m2!1sen!2sin" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <div class="mt-3 small text-center fw-semibold">
+          <i class="fas fa-location-dot text-accent me-1" style="color: var(--accent-gold);"></i> BKC, Mumbai — India’s most premium real estate destination
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Call-to-Action Section: Ready to find your dream property? -->
+<div class="container container-custom-pad mb-5">
+  <div class="cta-section">
+    <div class="row align-items-center gy-3">
+      <div class="col-md-7">
+        <h3 class="mb-2">Ready to find your dream property?</h3>
+        <p class="mb-0 opacity-75">Discover ultra-luxury penthouses, waterfront villas & curated investments.</p>
+      </div>
+      <div class="col-md-5 text-md-end">
+        <a href="#" class="btn btn-gold-outline"><i class="fas fa-search me-2"></i>Browse Properties</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dark Footer with luxury finish -->
+ <footer class="text-white pt-5 pb-3 border-top border-secondary" style="background-color: #222A39;">
+    <div class="container">
+      <div class="row gy-4">
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div style="color: #F97316; font-size: 2rem; line-height: 1;">
+              <i class="fas fa-building"></i>
+            </div>
+            <h4 class="fw-bold mb-0" style="color: #F97316; letter-spacing: -0.5px;">
+              PropDekho
+            </h4>
+          </div>
+
+          <p class="text-white-50 small mb-3">
+            India's trusted platform for direct property deals between owners, brokers, and buyers. No middlemen, no
+            hidden fees.
+          </p>
+
+          <div class="d-flex gap-2">
+            <a href="#" class="btn btn-outline-light rounded-circle social-icon-btn"
+              style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="#" class="btn btn-outline-light rounded-circle social-icon-btn"
+              style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+              <i class="fab fa-twitter"></i>
+            </a>
+
+            <a href="#" class="btn btn-outline-light rounded-circle social-icon-btn"
+              style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+              <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="#" class="btn btn-outline-light rounded-circle social-icon-btn"
+              style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-6 col-lg-3">
+          <h6 class="fw-bold mb-3 border-bottom pb-2 d-inline-block" style="border-color: #F97316 !important;">
+            QUICK LINKS
+          </h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#hero" class="text-white-50 text-decoration-none small">Home</a></li>
+            <li class="mb-2"><a href="#Properties" class="text-white-50 text-decoration-none small">All Properties</a></li>
+            <li class="mb-2"><a href="#About" class="text-white-50 text-decoration-none small">About Us</a></li>
+            <li class="mb-2"><a href="#Contact" class="text-white-50 text-decoration-none small">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-6 col-lg-3">
+          <h6 class="fw-bold mb-3 border-bottom pb-2 d-inline-block" style="border-color: #F97316 !important;">
+            FOR USERS
+          </h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none small">Post Property Free</a></li>
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none small">Login / Register</a></li>
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none small">Search Properties</a></li>
+            <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none small">Apartments</a></li>
+            <li><a href="#" class="text-white-50 text-decoration-none small">Villas</a></li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6 class="fw-bold mb-3 border-bottom pb-2 d-inline-block" style="border-color: #F97316 !important;">
+            CONTACT US
+          </h6>
+          <div class="d-flex align-items-start gap-2 mb-3">
+            <i class="fas fa-envelope mt-1" style="color: #F97316;"></i>
+            <a href="mailto:support@propdekho.com"
+              class="text-white-50 text-decoration-none small">support@propdekho.com</a>
+          </div>
+          <div class="d-flex align-items-start gap-2 mb-3">
+            <i class="fas fa-phone mt-1" style="color: #F97316;"></i>
+            <a href="tel:+9118004008888" class="text-white-50 text-decoration-none small">+91 1800 400 8888</a>
+          </div>
+          <div class="d-flex align-items-start gap-2">
+            <i class="fas fa-map-marker-alt mt-1" style="color: #F97316;"></i>
+            <span class="text-white-50 small">
+              Tower B, WeWork, Cyber City, Gurugram, HR - 122002, India
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="border-top border-secondary mt-4 pt-3 text-center">
+        <p class="text-white-50 small mb-0">© 2026 PropDekho. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+<!-- Bootstrap JS + form interaction -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Elegant form submission demo
+  const formElement = document.querySelector('.form-section form');
+  if(formElement) {
+    formElement.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nameField = formElement.querySelector('input[placeholder="Amir Khan"]');
+      const userName = nameField && nameField.value.trim() !== '' ? nameField.value.trim() : 'Valued Client';
+      alert(`✨ Thank you, ${userName}! One of our premium property advisors will reach out shortly. Welcome to PropDekho.`);
+      formElement.reset();
+    });
+  }
+</script>
+</body>
+</html>
