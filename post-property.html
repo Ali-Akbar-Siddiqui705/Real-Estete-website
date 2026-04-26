@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>EstateFlow | Post Property - Modern Form</title>
+    <!-- Bootstrap 5 + Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef2f9 0%, #e0e8f0 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 28px;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .input-modern {
+            background-color: #fefefe;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px !important;
+            padding: 0.7rem 1rem;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .input-modern:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+            outline: none;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 0.4rem;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-label i {
+            color: #f97316;
+            font-size: 0.85rem;
+        }
+
+        .radio-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+            background: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .radio-card.active {
+            border-color: #f97316;
+            background-color: #fff7ed;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.12);
+            color: #f97316;
+        }
+
+        .radio-card i {
+            font-size: 1rem;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(105deg, #f97316 0%, #ea580c 100%);
+            border: none;
+            border-radius: 40px !important;
+            padding: 0.7rem 2rem;
+            font-weight: 700;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 18px rgba(249, 115, 22, 0.25);
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(105deg, #fb923c 0%, #c2410c 100%);
+            box-shadow: 0 14px 26px rgba(234, 88, 12, 0.3);
+        }
+
+        .file-label {
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 18px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .file-label:hover {
+            border-color: #f97316;
+            background-color: #fff7ed;
+        }
+
+        .preview-img {
+            object-fit: cover;
+            width: 85px;
+            height: 85px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            background: #f1f5f9;
+        }
+
+        select.input-modern {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        @media (max-width: 768px) {
+            .glass-card {
+                border-radius: 24px;
+            }
+
+            .radio-card {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        .custom-icon {
+            color: #F97316;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-5 py-md-6">
+        <div class="text-center mb-5">
+            <div class="d-inline-flex align-items-center gap-2 bg-white bg-opacity-75 rounded-pill px-4 py-2 shadow-sm">
+                <i class="fas fa-building custom-icon"></i>
+                <span class="text-secondary fw-semibold small">Premium Real Estate</span>
+            </div>
+            <h1 class="display-6 fw-bold mt-4">
+                List your <span style="color:#F97316;">property</span>
+            </h1>
+            <p class="text-muted mt-2">Fill details & get premium visibility — AI enhanced listing</p>
+        </div>
+
+        <!-- Main Form Card -->
+        <div class="glass-card shadow-lg overflow-hidden">
+            <div class="bg-white px-4 py-3 border-bottom d-flex flex-wrap justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fas fa-home  custom-icon fs-5"></i>
+                    <span class="fw-semibold text-dark">Property Information</span>
+                </div>
+                <div class="text-muted small"><i class="fas fa-lock"></i> Secure & encrypted</div>
+            </div>
+
+            <form id="propertyForm" class="p-4 p-lg-5">
+                <div class="row g-4">
+                    <!-- Title -->
+                    <div class="col-12">
+                        <label class="form-label"><i class="fas fa-tag"></i> Property Title <span
+                                class="text-danger">*</span></label>
+                        <input type="text" id="propertyTitle" class="form-control input-modern"
+                           placeholder="Enter a compelling property title">
+                    </div>
+
+                    <!-- Price & Price/sqft -->
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="fas fa-rupee-sign"></i> Price <span
+                                class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <!-- <span class="input-group-text bg-white border-end-0 rounded-start-3">₹</span> -->
+                            <input type="text" id="price" class="form-control input-modern rounded-start-0"
+                                placeholder="Enter asking price (e.g. 1,25,00,000)">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="fas fa-chart-line"></i> Price / sq.ft</label>
+                        <input type="text" id="pricePerSqft" class="form-control input-modern" placeholder="Enter price per sq.ft">
+                    </div>
+
+                    <!-- City & Location -->
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="fas fa-city"></i> City <span
+                                class="text-danger">*</span></label>
+                        <input type="text" id="city" class="form-control input-modern"
+                            placeholder="Enter city name">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="fas fa-map-marker-alt"></i> Location </label>
+                        <input type="text" id="location" class="form-control input-modern"
+                            placeholder="Enter exact locality">
+                    </div>
+
+                    <!-- Area, Beds, Baths, Balcony, Parking -->
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-vector-square"></i> Area (sq.ft)</label>
+                        <input type="number" id="area" class="form-control input-modern"placeholder="Enter total area in sq.ft">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-bed"></i> Bedrooms</label>
+                        <input type="number" id="beds" value="3" class="form-control input-modern"placeholder="Number of bedrooms">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-bath"></i> Bathrooms</label>
+                        <input type="number" id="baths" value="2" class="form-control input-modern"placeholder="Number of bathrooms">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-umbrella"></i> Balcony</label>
+                        <input type="number" id="balcony" value="2" class="form-control input-modern"placeholder="Number of balconies">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-car"></i> Parking (Spots)</label>
+                        <input type="number" id="parking" value="2" class="form-control input-modern"placeholder="Parking spaces available">
+                    </div>
+
+                    <!-- Dropdowns -->
+                    <div class="col-md-3">
+                        <label class="form-label"><i class="fas fa-couch"></i> Furnished</label>
+                        <select id="furnished" class="form-select input-modern"placeholder="Select furnishing status">
+                            <option>Fully Furnished</option>
+                            <option>Semi Furnished</option>
+                            <option>Unfurnished</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label"><i class="fas fa-calendar-alt"></i> Property Age</label>
+                        <select id="propertyAge" class="form-select input-modern"placeholder="Select property age">
+                            <option>New Construction (0-1 year)</option>
+                            <option>1-5 years</option>
+                            <option>5-10 years</option>
+                            <option>10+ years</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label"><i class="fas fa-star"></i> Featured Listing</label>
+                        <select id="featured" class="form-select input-modern" placeholder="Feature this listing?">
+                            <option value="Yes">Yes (Boost visibility)</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label"><i class="fas fa-chart-simple"></i> Listing Status</label>
+                        <select id="status" class="form-select input-modern"placeholder="Select listing status">
+                            <option value="For Sale">🔥 For Sale</option>
+                            <option value="For Rent">🏠 For Rent</option>
+                        </select>
+                    </div>
+
+                    <!-- Property Type Pills -->
+                    <div class="col-12">
+                        <label class="form-label"><i class="fas fa-building"></i> Property Type</label>
+                        <div class="d-flex flex-wrap gap-2 mt-1" id="propertyTypeGroup">
+                            <div data-type="Apartment" class="radio-card active"><i class="fas fa-building"></i>
+                                Apartment</div>
+                            <div data-type="Villa" class="radio-card"><i class="fas fa-home"></i> Villa / House</div>
+                            <div data-type="Penthouse" class="radio-card"><i class="fas fa-arrow-up"></i> Penthouse
+                            </div>
+                        </div>
+                        <input type="hidden" id="propertyTypeInput" value="Apartment">
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-12">
+                        <label class="form-label"><i class="fas fa-pen-fancy"></i> Description</label>
+                        <textarea id="description" rows="3" class="form-control input-modern"placeholder="Write a detailed property description"
+                            placeholder="Describe unique features, nearby schools, metro connectivity, park view, etc."></textarea>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="col-12">
+                        <label class="form-label"><i class="fas fa-image"></i> Property Image</label>
+                        <div class="d-flex flex-column flex-sm-row gap-4 align-items-start">
+                            <div class="flex-grow-1">
+                                <label for="imageUpload"
+                                    class="file-label d-flex flex-column align-items-center justify-content-center w-100 p-3 rounded-4 border-2"
+                                    style="cursor: pointer;">
+                                    <i class="fas fa-cloud-upload-alt text-orange-400 fs-2 mb-2"></i>
+                                    <span class="fw-semibold text-secondary">Click or drag to upload</span>
+                                    <span class="small text-muted">PNG, JPG up to 5MB</span>
+                                    <input type="file" id="imageUpload" class="d-none"
+                                        accept="image/jpeg,image/png,image/jpg"placeholder="Upload high-quality property images">
+                                </label>
+                            </div>
+                            <div id="imagePreviewContainer" class="d-none">
+                                <img id="imagePreview" class="preview-img" src="#" alt="preview">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agent Details -->
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="fas fa-user-circle"></i> Agent Name</label>
+                        <input type="text" id="agentName" class="form-control input-modern"
+                           placeholder="Enter agent full name">
+                    </div>
+                   
+
+                    <!-- Submit -->
+                    <div class="col-12 mt-3">
+                        <div
+                            class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 pt-2 border-top">
+                            <div class="text-muted small"><i class="fas fa-shield-alt text-success"></i> Your data is
+                                protected</div>
+                            <button type="button" id="submitBtn"
+                                class="btn btn-gradient px-5 py-2 text-white d-inline-flex align-items-center gap-2">
+                                <i class="fas fa-paper-plane"></i> Post Property Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Feedback Alert -->
+                    <div class="col-12">
+                        <div id="formFeedback" class="alert d-none rounded-4 shadow-sm" role="alert"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="text-center text-muted small mt-5">
+            <i class="far fa-clock"></i> Instant listing · Premium reach · No hidden fees
+        </div>
+    </div>
+
+    <!-- Normal JavaScript - Human written, clean and readable -->
+    <script>
+        // Wait for the page to load completely
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // ----- 1. PROPERTY TYPE PILLS (radio style) -----
+            const radioCards = document.querySelectorAll('.radio-card');
+            const propertyTypeHidden = document.getElementById('propertyTypeInput');
+
+            function updatePropertyType(selectedType) {
+                // Loop through all radio cards
+                for (let i = 0; i < radioCards.length; i++) {
+                    const card = radioCards[i];
+                    const cardType = card.getAttribute('data-type');
+                    if (cardType === selectedType) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                }
+                // Update hidden input value
+                propertyTypeHidden.value = selectedType;
+            }
+
+            // Add click event to each property type pill
+            for (let i = 0; i < radioCards.length; i++) {
+                const card = radioCards[i];
+                card.addEventListener('click', function () {
+                    const selectedType = this.getAttribute('data-type');
+                    updatePropertyType(selectedType);
+                });
+            }
+
+            // ----- 2. IMAGE UPLOAD AND PREVIEW -----
+            const imageUploadInput = document.getElementById('imageUpload');
+            const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+            const imagePreviewElement = document.getElementById('imagePreview');
+            let currentImageData = null; // store base64 image
+
+            function resetImagePreview() {
+                currentImageData = null;
+                imagePreviewContainer.classList.add('d-none');
+                imagePreviewElement.src = '#';
+                imageUploadInput.value = '';
+            }
+
+            imageUploadInput.addEventListener('change', function (event) {
+                const file = event.target.files[0];
+
+                // If no file selected, return
+                if (!file) {
+                    resetImagePreview();
+                    return;
+                }
+
+                // Validate file type
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+                let isTypeValid = false;
+                for (let i = 0; i < allowedTypes.length; i++) {
+                    if (file.type === allowedTypes[i]) {
+                        isTypeValid = true;
+                        break;
+                    }
+                }
+
+                if (!isTypeValid) {
+                    showMessage('Please upload a valid image (JPEG or PNG).', 'danger');
+                    resetImagePreview();
+                    return;
+                }
+
+                // Validate file size (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    showMessage('Image size should be less than 5MB.', 'danger');
+                    resetImagePreview();
+                    return;
+                }
+
+                // Read file as data URL
+                const fileReader = new FileReader();
+                fileReader.onload = function (e) {
+                    currentImageData = e.target.result;
+                    imagePreviewElement.src = currentImageData;
+                    imagePreviewContainer.classList.remove('d-none');
+                };
+                fileReader.readAsDataURL(file);
+            });
+
+            // ----- 3. FEEDBACK / ALERT FUNCTION -----
+            const feedbackDiv = document.getElementById('formFeedback');
+
+            function showMessage(message, type = 'success') {
+                // Remove existing classes
+                feedbackDiv.classList.remove('d-none', 'alert-success', 'alert-danger');
+
+                if (type === 'success') {
+                    feedbackDiv.classList.add('alert-success');
+                } else {
+                    feedbackDiv.classList.add('alert-danger');
+                }
+
+                feedbackDiv.innerHTML = '<i class="fas ' + (type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle') + ' me-2"></i> ' + message;
+                feedbackDiv.classList.remove('d-none');
+
+                // Auto hide after 5 seconds
+                setTimeout(function () {
+                    feedbackDiv.classList.add('d-none');
+                }, 5000);
+            }
+
+            // ----- 4. COLLECT FORM DATA -----
+            function getFormData() {
+                const title = document.getElementById('propertyTitle').value.trim();
+                const price = document.getElementById('price').value.trim();
+                const pricePerSqft = document.getElementById('pricePerSqft').value.trim();
+                const city = document.getElementById('city').value.trim();
+                const locationVal = document.getElementById('location').value.trim();
+                const area = document.getElementById('area').value;
+                const beds = document.getElementById('beds').value;
+                const baths = document.getElementById('baths').value;
+                const balcony = document.getElementById('balcony').value;
+                const parking = document.getElementById('parking').value;
+                const furnished = document.getElementById('furnished').value;
+                const propertyAge = document.getElementById('propertyAge').value;
+                const featured = document.getElementById('featured').value;
+                const status = document.getElementById('status').value;
+                const propertyType = propertyTypeHidden.value;
+                const description = document.getElementById('description').value.trim();
+                const agentName = document.getElementById('agentName').value.trim();
+                const agentPhone = document.getElementById('agentPhone').value.trim();
+
+                return {
+                    title: title,
+                    price: price,
+                    pricePerSqft: pricePerSqft,
+                    city: city,
+                    location: locationVal,
+                    area: area,
+                    beds: beds,
+                    baths: baths,
+                    balcony: balcony,
+                    parking: parking,
+                    furnished: furnished,
+                    propertyAge: propertyAge,
+                    featured: featured,
+                    status: status,
+                    propertyType: propertyType,
+                    description: description,
+                    agentName: agentName,
+                    agentPhone: agentPhone,
+                    imageBase64: currentImageData
+                };
+            }
+
+            // ----- 5. VALIDATE FORM -----
+            function validateFormData(data) {
+                if (!data.title) {
+                    return "Property title is required.";
+                }
+                if (!data.price) {
+                    return "Price is required.";
+                }
+                if (!data.city) {
+                    return "City is required.";
+                }
+                if (data.area && (isNaN(data.area) || data.area <= 0)) {
+                    return "Please enter a valid area in sq.ft.";
+                }
+                if (data.beds && (isNaN(data.beds) || data.beds < 0)) {
+                    return "Bedrooms must be a valid number.";
+                }
+                if (data.baths && (isNaN(data.baths) || data.baths < 0)) {
+                    return "Bathrooms must be a valid number.";
+                }
+                return null; // no error
+            }
+
+            // ----- 6. SUBMIT HANDLER -----
+            const submitButton = document.getElementById('submitBtn');
+
+            submitButton.addEventListener('click', function () {
+                // Get all form data
+                const formData = getFormData();
+
+                // Validate
+                const validationError = validateFormData(formData);
+                if (validationError) {
+                    showMessage(validationError, 'danger');
+                    return;
+                }
+
+                // Success! Show detailed success message
+                let successMessage = '<strong>✅ Property posted successfully!</strong><br>';
+                successMessage += '🏷️ ' + formData.title + ' | ' + formData.status + '<br>';
+                successMessage += '📍 ' + formData.city;
+                if (formData.location) {
+                    successMessage += ', ' + formData.location;
+                }
+                successMessage += '<br>';
+                successMessage += '💰 ' + formData.price;
+                if (formData.pricePerSqft) {
+                    successMessage += ' (₹' + formData.pricePerSqft + '/sq.ft)';
+                }
+                successMessage += '<br>';
+                successMessage += '🛏️ ' + formData.beds + ' Beds · 🛁 ' + formData.baths + ' Baths · 🅿️ ' + formData.parking + ' Parking';
+                if (formData.agentName) {
+                    successMessage += '<br>👤 Agent: ' + formData.agentName;
+                }
+
+                showMessage(successMessage, 'success');
+
+                // Log to console for debugging (human readable)
+                console.log('Property Listing Data:', formData);
+
+                // Optional: Scroll feedback into view smoothly
+                feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+
+            // ----- 7. INPUT SANITIZATION (only numbers for numeric fields) -----
+            const priceInput = document.getElementById('price');
+            priceInput.addEventListener('input', function () {
+                // Allow only numbers and commas
+                this.value = this.value.replace(/[^0-9,]/g, '');
+            });
+
+            const numericFields = ['area', 'beds', 'baths', 'balcony', 'parking'];
+            for (let i = 0; i < numericFields.length; i++) {
+                const fieldId = numericFields[i];
+                const fieldElement = document.getElementById(fieldId);
+                if (fieldElement) {
+                    fieldElement.addEventListener('input', function () {
+                        this.value = this.value.replace(/[^0-9]/g, '');
+                    });
+                }
+            }
+
+        }); // end DOMContentLoaded
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
